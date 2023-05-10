@@ -20,7 +20,7 @@
             <TextBox Margin="2" x:Name="N3"/>
 
             <TextBlock Margin="5,20,0,0">Пол:</TextBlock>
-            <TextBox Margin="2" x:Name="N4"/>
+            <ComboBox Margin="2" x:Name="N4"/>
             <TextBlock Margin="5,10,0,0">Номер телефона:</TextBlock>
             <TextBox Margin="2" x:Name="N5"/>
 

@@ -15,11 +15,11 @@
             <TextBox Width="300" x:Name="tBox" TextChanged="TextBox_TextChanged"/>
             <Button x:Name="btnReset" Content="Сбросить" Margin="20,0,0,0" Click="btnReset_Click"/>
         </StackPanel>
-        <DataGrid Height="300" x:Name="dataGrid">
+        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Описание" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Колорийность" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Колорийность" Binding="{Binding CalorieContent}" Width="3*"></DataGridTextColumn>
              </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Margin="10,5,10,0" HorizontalAlignment="Left" Orientation="Horizontal" >

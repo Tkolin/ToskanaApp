@@ -68,6 +68,7 @@ namespace ToskanaApp
             {
                 MessageBox.Show(ex.Message);
             }
+            UpdateDataGrid();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

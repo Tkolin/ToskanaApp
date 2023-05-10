@@ -35,9 +35,7 @@ namespace ToskanaApp
         public virtual DbSet<Employe> Employe { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Ingredient> Ingredient { get; set; }
-        public virtual DbSet<Meny> Meny { get; set; }
         public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<PartDay> PartDay { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

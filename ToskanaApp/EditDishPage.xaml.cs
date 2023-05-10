@@ -44,8 +44,8 @@ namespace ToskanaApp
             if (edit)
             {
                 B1.Text = dish.Name;
-                B1.Text = dish.Description;
-                B1.Text = dish.CalorieContent.ToString();
+                B2.Text = dish.Description;
+                B3.Text = dish.CalorieContent.ToString();
                 dataGrid1.ItemsSource = ToskanaDBEntities.GetContext().IngredientForDish.Where(i =>
                             i.DishID == dish.ID).ToList();
 
@@ -63,6 +63,8 @@ namespace ToskanaApp
             {
                 ToskanaDBEntities.GetContext().IngredientForDish.Remove(ingredientForDish);
                 ToskanaDBEntities.GetContext().SaveChanges();
+                dataGrid1.ItemsSource = ToskanaDBEntities.GetContext().IngredientForDish.Where(i =>
+            i.DishID == dish.ID).ToList();
             }
             catch (Exception ex)
             {
@@ -86,6 +88,7 @@ namespace ToskanaApp
                     dish.CalorieContent = Convert.ToInt32(B3.Text);
                     ToskanaDBEntities.GetContext().Dish.Add(dish);
                     ToskanaDBEntities.GetContext().SaveChanges();
+                    edit = true;
                 }
                 ingredientForDish.Dish = dish;
                 ingredientForDish.Ingredient = ingredient;
@@ -93,6 +96,8 @@ namespace ToskanaApp
 
                 ToskanaDBEntities.GetContext().IngredientForDish.Add(ingredientForDish);
                 ToskanaDBEntities.GetContext().SaveChanges();
+                dataGrid1.ItemsSource = ToskanaDBEntities.GetContext().IngredientForDish.Where(i =>
+            i.DishID == dish.ID).ToList();
             }
             catch (Exception ex)
             {

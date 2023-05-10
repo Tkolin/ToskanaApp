@@ -17,8 +17,8 @@ namespace ToskanaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Dish()
         {
-            this.IngredientForDish = new HashSet<IngredientForDish>();
             this.Order = new HashSet<Order>();
+            this.IngredientForDish = new HashSet<IngredientForDish>();
         }
     
         public int ID { get; set; }
@@ -27,8 +27,8 @@ namespace ToskanaApp
         public Nullable<double> CalorieContent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IngredientForDish> IngredientForDish { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IngredientForDish> IngredientForDish { get; set; }
     }
 }

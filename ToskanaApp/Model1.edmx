@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ToskanaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ToskanaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Dish">
           <Key>
             <PropertyRef Name="ID" />
@@ -38,13 +38,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar(max)" />
           <Property Name="Image" Type="image" />
           <Property Name="UnitID" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "ToskanaDB.dbo.IngredientForDish" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="IngredientForDish">
           <Key>
             <PropertyRef Name="iD" />
@@ -53,15 +51,6 @@
           <Property Name="IngredientID" Type="int" />
           <Property Name="DishID" Type="int" />
           <Property Name="Count" Type="int" />
-        </EntityType>
-        <EntityType Name="Meny">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar(max)" />
-          <Property Name="Description" Type="varchar(max)" />
-          <Property Name="DateOfCreation" Type="date" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -72,13 +61,6 @@
           <Property Name="DishID" Type="int" />
           <Property Name="Count" Type="int" />
           <Property Name="AutorID" Type="int" />
-        </EntityType>
-        <EntityType Name="PartDay">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -115,7 +97,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="varchar(max)" />
           <Property Name="Password" Type="varchar(max)" />
           <Property Name="RoleID" Type="int" />
@@ -245,22 +227,13 @@
           <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Meny" EntityType="Self.Meny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngredientForDish" EntityType="Self.IngredientForDish" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PartDay" EntityType="Self.PartDay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IngredientForDish" EntityType="Self.IngredientForDish" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [IngredientForDish].[iD] AS [iD], 
-    [IngredientForDish].[IngredientID] AS [IngredientID], 
-    [IngredientForDish].[DishID] AS [DishID], 
-    [IngredientForDish].[Count] AS [Count]
-    FROM [dbo].[IngredientForDish] AS [IngredientForDish]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Employe_Gender" Association="Self.FK_Employe_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Employe" EntitySet="Employe" />
@@ -302,11 +275,63 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ToskanaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ToskanaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dish" EntityType="ToskanaDBModel.Dish" />
+          <EntitySet Name="Employe" EntityType="ToskanaDBModel.Employe" />
+          <EntitySet Name="Gender" EntityType="ToskanaDBModel.Gender" />
+          <EntitySet Name="Ingredient" EntityType="ToskanaDBModel.Ingredient" />
+          <EntitySet Name="Order" EntityType="ToskanaDBModel.Order" />
+          <EntitySet Name="Position" EntityType="ToskanaDBModel.Position" />
+          <EntitySet Name="Role" EntityType="ToskanaDBModel.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="ToskanaDBModel.sysdiagrams" />
+          <EntitySet Name="Unit" EntityType="ToskanaDBModel.Unit" />
+          <EntitySet Name="User" EntityType="ToskanaDBModel.User" />
+          <AssociationSet Name="FK_Order_Dish" Association="ToskanaDBModel.FK_Order_Dish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_Gender" Association="ToskanaDBModel.FK_Employe_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_Position" Association="ToskanaDBModel.FK_Employe_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_User" Association="ToskanaDBModel.FK_Employe_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Employe" Association="ToskanaDBModel.FK_Order_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredient_Unit" Association="ToskanaDBModel.FK_Ingredient_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Ingredient" EntitySet="Ingredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="ToskanaDBModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role1" Association="ToskanaDBModel.FK_User_Role1">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="IngredientForDish" EntityType="ToskanaDBModel.IngredientForDish" />
+          <AssociationSet Name="FK_IngredientForDish_Dish" Association="ToskanaDBModel.FK_IngredientForDish_Dish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="IngredientForDish" EntitySet="IngredientForDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientForDish_Ingredient" Association="ToskanaDBModel.FK_IngredientForDish_Ingredient">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="IngredientForDish" EntitySet="IngredientForDish" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Dish">
           <Key>
             <PropertyRef Name="ID" />
@@ -315,8 +340,8 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CalorieContent" Type="Double" />
-          <NavigationProperty Name="IngredientForDish" Relationship="Self.FK_IngredientForDish_Dish" FromRole="Dish" ToRole="IngredientForDish" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Dish" FromRole="Dish" ToRole="Order" />
+          <NavigationProperty Name="Order" Relationship="ToskanaDBModel.FK_Order_Dish" FromRole="Dish" ToRole="Order" />
+          <NavigationProperty Name="IngredientForDish" Relationship="ToskanaDBModel.FK_IngredientForDish_Dish" FromRole="Dish" ToRole="IngredientForDish" />
         </EntityType>
         <EntityType Name="Employe">
           <Key>
@@ -330,10 +355,10 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="GenderID" Type="Int32" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_Employe_Gender" FromRole="Employe" ToRole="Gender" />
-          <NavigationProperty Name="Position" Relationship="Self.FK_Employe_Position" FromRole="Employe" ToRole="Position" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Employe_User" FromRole="Employe" ToRole="User" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Employe" FromRole="Employe" ToRole="Order" />
+          <NavigationProperty Name="Gender" Relationship="ToskanaDBModel.FK_Employe_Gender" FromRole="Employe" ToRole="Gender" />
+          <NavigationProperty Name="Position" Relationship="ToskanaDBModel.FK_Employe_Position" FromRole="Employe" ToRole="Position" />
+          <NavigationProperty Name="User" Relationship="ToskanaDBModel.FK_Employe_User" FromRole="Employe" ToRole="User" />
+          <NavigationProperty Name="Order" Relationship="ToskanaDBModel.FK_Order_Employe" FromRole="Employe" ToRole="Order" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -341,27 +366,18 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employe" Relationship="Self.FK_Employe_Gender" FromRole="Gender" ToRole="Employe" />
+          <NavigationProperty Name="Employe" Relationship="ToskanaDBModel.FK_Employe_Gender" FromRole="Gender" ToRole="Employe" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="UnitID" Type="Int32" />
-          <NavigationProperty Name="Unit" Relationship="Self.FK_Ingredient_Unit" FromRole="Ingredient" ToRole="Unit" />
-          <NavigationProperty Name="IngredientForDish" Relationship="Self.FK_IngredientForDish_Ingredient" FromRole="Ingredient" ToRole="IngredientForDish" />
-        </EntityType>
-        <EntityType Name="Meny">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfCreation" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Unit" Relationship="ToskanaDBModel.FK_Ingredient_Unit" FromRole="Ingredient" ToRole="Unit" />
+          <NavigationProperty Name="IngredientForDish" Relationship="ToskanaDBModel.FK_IngredientForDish_Ingredient" FromRole="Ingredient" ToRole="IngredientForDish" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -372,15 +388,8 @@
           <Property Name="DishID" Type="Int32" />
           <Property Name="Count" Type="Int32" />
           <Property Name="AutorID" Type="Int32" />
-          <NavigationProperty Name="Dish" Relationship="Self.FK_Order_Dish" FromRole="Order" ToRole="Dish" />
-          <NavigationProperty Name="Employe" Relationship="Self.FK_Order_Employe" FromRole="Order" ToRole="Employe" />
-        </EntityType>
-        <EntityType Name="PartDay">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dish" Relationship="ToskanaDBModel.FK_Order_Dish" FromRole="Order" ToRole="Dish" />
+          <NavigationProperty Name="Employe" Relationship="ToskanaDBModel.FK_Order_Employe" FromRole="Order" ToRole="Employe" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -388,7 +397,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employe" Relationship="Self.FK_Employe_Position" FromRole="Position" ToRole="Employe" />
+          <NavigationProperty Name="Employe" Relationship="ToskanaDBModel.FK_Employe_Position" FromRole="Position" ToRole="Employe" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -396,14 +405,14 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_User_Role1" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="ToskanaDBModel.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="ToskanaDBModel.FK_User_Role1" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -415,46 +424,23 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Ingredient_Unit" FromRole="Unit" ToRole="Ingredient" />
+          <NavigationProperty Name="Ingredient" Relationship="ToskanaDBModel.FK_Ingredient_Unit" FromRole="Unit" ToRole="Ingredient" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RoleID" Type="Int32" />
-          <NavigationProperty Name="Employe" Relationship="Self.FK_Employe_User" FromRole="User" ToRole="Employe" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Role1" Relationship="Self.FK_User_Role1" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Employe" Relationship="ToskanaDBModel.FK_Employe_User" FromRole="User" ToRole="Employe" />
+          <NavigationProperty Name="Role" Relationship="ToskanaDBModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Role1" Relationship="ToskanaDBModel.FK_User_Role1" FromRole="User" ToRole="Role" />
         </EntityType>
-        <EntityType Name="IngredientForDish">
-          <Key>
-            <PropertyRef Name="iD" />
-          </Key>
-          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IngredientID" Type="Int32" />
-          <Property Name="DishID" Type="Int32" />
-          <Property Name="Count" Type="Int32" />
-          <NavigationProperty Name="Dish" Relationship="Self.FK_IngredientForDish_Dish" FromRole="IngredientForDish" ToRole="Dish" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.FK_IngredientForDish_Ingredient" FromRole="IngredientForDish" ToRole="Ingredient" />
-        </EntityType>
-        <Association Name="FK_IngredientForDish_Dish">
-          <End Role="Dish" Type="Self.Dish" Multiplicity="0..1" />
-          <End Role="IngredientForDish" Type="Self.IngredientForDish" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Dish">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="IngredientForDish">
-              <PropertyRef Name="DishID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Dish">
-          <End Role="Dish" Type="Self.Dish" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Dish" Role="Dish" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dish">
               <PropertyRef Name="ID" />
@@ -465,8 +451,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employe_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
-          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Employe" Role="Employe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Gender">
               <PropertyRef Name="ID" />
@@ -477,8 +463,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employe_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
-          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Employe" Role="Employe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
               <PropertyRef Name="ID" />
@@ -489,8 +475,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employe_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <End Type="ToskanaDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Employe" Role="Employe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
@@ -501,8 +487,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Employe">
-          <End Role="Employe" Type="Self.Employe" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Employe" Role="Employe" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employe">
               <PropertyRef Name="ID" />
@@ -513,8 +499,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ingredient_Unit">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
-          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.Ingredient" Role="Ingredient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unit">
               <PropertyRef Name="ID" />
@@ -524,21 +510,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IngredientForDish_Ingredient">
-          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
-          <End Role="IngredientForDish" Type="Self.IngredientForDish" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ingredient">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="IngredientForDish">
-              <PropertyRef Name="IngredientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="ID" />
@@ -549,8 +523,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role1">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="ToskanaDBModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="ID" />
@@ -560,62 +534,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ToskanaDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Dish" EntityType="Self.Dish" />
-          <EntitySet Name="Employe" EntityType="Self.Employe" />
-          <EntitySet Name="Gender" EntityType="Self.Gender" />
-          <EntitySet Name="Ingredient" EntityType="Self.Ingredient" />
-          <EntitySet Name="Meny" EntityType="Self.Meny" />
-          <EntitySet Name="Order" EntityType="Self.Order" />
-          <EntitySet Name="PartDay" EntityType="Self.PartDay" />
-          <EntitySet Name="Position" EntityType="Self.Position" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Unit" EntityType="Self.Unit" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="IngredientForDish" EntityType="Self.IngredientForDish" />
-          <AssociationSet Name="FK_IngredientForDish_Dish" Association="Self.FK_IngredientForDish_Dish">
-            <End Role="Dish" EntitySet="Dish" />
-            <End Role="IngredientForDish" EntitySet="IngredientForDish" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Dish" Association="Self.FK_Order_Dish">
-            <End Role="Dish" EntitySet="Dish" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employe_Gender" Association="Self.FK_Employe_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="Employe" EntitySet="Employe" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employe_Position" Association="Self.FK_Employe_Position">
-            <End Role="Position" EntitySet="Position" />
-            <End Role="Employe" EntitySet="Employe" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employe_User" Association="Self.FK_Employe_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Employe" EntitySet="Employe" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Employe" Association="Self.FK_Order_Employe">
-            <End Role="Employe" EntitySet="Employe" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ingredient_Unit" Association="Self.FK_Ingredient_Unit">
-            <End Role="Unit" EntitySet="Unit" />
-            <End Role="Ingredient" EntitySet="Ingredient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_IngredientForDish_Ingredient" Association="Self.FK_IngredientForDish_Ingredient">
-            <End Role="Ingredient" EntitySet="Ingredient" />
-            <End Role="IngredientForDish" EntitySet="IngredientForDish" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role1" Association="Self.FK_User_Role1">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <EntityType Name="IngredientForDish">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientID" Type="Int32" />
+          <Property Name="DishID" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Dish" Relationship="ToskanaDBModel.FK_IngredientForDish_Dish" FromRole="IngredientForDish" ToRole="Dish" />
+          <NavigationProperty Name="Ingredient" Relationship="ToskanaDBModel.FK_IngredientForDish_Ingredient" FromRole="IngredientForDish" ToRole="Ingredient" />
+        </EntityType>
+        <Association Name="FK_IngredientForDish_Dish">
+          <End Type="ToskanaDBModel.Dish" Role="Dish" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.IngredientForDish" Role="IngredientForDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IngredientForDish">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientForDish_Ingredient">
+          <End Type="ToskanaDBModel.Ingredient" Role="Ingredient" Multiplicity="0..1" />
+          <End Type="ToskanaDBModel.IngredientForDish" Role="IngredientForDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IngredientForDish">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -624,126 +578,108 @@
           <EntitySetMapping Name="Dish">
             <EntityTypeMapping TypeName="ToskanaDBModel.Dish">
               <MappingFragment StoreEntitySet="Dish">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CalorieContent" ColumnName="CalorieContent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employe">
             <EntityTypeMapping TypeName="ToskanaDBModel.Employe">
               <MappingFragment StoreEntitySet="Employe">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="ToskanaDBModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ingredient">
             <EntityTypeMapping TypeName="ToskanaDBModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredient">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="UnitID" ColumnName="UnitID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Meny">
-            <EntityTypeMapping TypeName="ToskanaDBModel.Meny">
-              <MappingFragment StoreEntitySet="Meny">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ToskanaDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="DishID" ColumnName="DishID" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="AutorID" ColumnName="AutorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PartDay">
-            <EntityTypeMapping TypeName="ToskanaDBModel.PartDay">
-              <MappingFragment StoreEntitySet="PartDay">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Position">
             <EntityTypeMapping TypeName="ToskanaDBModel.Position">
               <MappingFragment StoreEntitySet="Position">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="ToskanaDBModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="ToskanaDBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Unit">
             <EntityTypeMapping TypeName="ToskanaDBModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="ToskanaDBModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IngredientForDish">
             <EntityTypeMapping TypeName="ToskanaDBModel.IngredientForDish">
               <MappingFragment StoreEntitySet="IngredientForDish">
-                <ScalarProperty Name="iD" ColumnName="iD" />
-                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
-                <ScalarProperty Name="DishID" ColumnName="DishID" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="iD" ColumnName="iD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,30 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2c3641a330de4cd99ead70462be4ad5c" Name="Diagram1">
-        <EntityTypeShape EntityType="ToskanaDBModel.Dish" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Employe" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Gender" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Ingredient" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Meny" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Order" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.PartDay" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Position" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Role" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.Unit" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.User" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToskanaDBModel.IngredientForDish" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
-        <AssociationConnector Association="ToskanaDBModel.FK_IngredientForDish_Dish" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Order_Dish" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Employe_Gender" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Employe_Position" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Employe_User" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Order_Employe" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_Ingredient_Unit" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_IngredientForDish_Ingredient" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_User_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="ToskanaDBModel.FK_User_Role1" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="ToskanaDBModel.Dish" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Employe" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Gender" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Ingredient" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Order" Width="1.5" PointX="7.5" PointY="1.5" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Position" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Role" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ToskanaDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ToskanaDBModel.Unit" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="ToskanaDBModel.User" Width="1.5" PointX="3" PointY="1.5" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Order_Dish" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Employe_Gender" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Employe_Position" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Employe_User" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Order_Employe" />
+        <AssociationConnector Association="ToskanaDBModel.FK_Ingredient_Unit" />
+        <AssociationConnector Association="ToskanaDBModel.FK_User_Role" />
+        <AssociationConnector Association="ToskanaDBModel.FK_User_Role1" />
+        <EntityTypeShape EntityType="ToskanaDBModel.IngredientForDish" Width="1.5" PointX="7.5" PointY="5.125" />
+        <AssociationConnector Association="ToskanaDBModel.FK_IngredientForDish_Dish" />
+        <AssociationConnector Association="ToskanaDBModel.FK_IngredientForDish_Ingredient" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

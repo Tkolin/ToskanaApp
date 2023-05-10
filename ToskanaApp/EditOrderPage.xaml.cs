@@ -25,7 +25,7 @@ namespace ToskanaApp
         public EditOrderPage()
         {
             InitializeComponent();
-            edit = true;
+            edit = false;
             this.order = new Order();
         }
         public EditOrderPage(Order order)

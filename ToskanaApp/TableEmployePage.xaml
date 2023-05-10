@@ -14,17 +14,17 @@
             <TextBox Width="300" x:Name="tBox" TextChanged="TextBox_TextChanged"/>
             <Button x:Name="btnReset" Content="Сбросить" Margin="20,0,0,0" Click="btnReset_Click"/>
         </StackPanel>
-        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False">
+        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Должность" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Position.Name}" Width="3*"></DataGridTextColumn>
 
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Логин" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Роль" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Логин" Binding="{Binding User.Login}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Роль" Binding="{Binding User.Role.Name}" Width="3*"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>

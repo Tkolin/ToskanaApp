@@ -27,18 +27,20 @@ namespace ToskanaApp
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            User user = ToskanaDBEntities.GetContext().User.Where(
-                u => u.Login == tBoxLogin.Text && u.Password == tBoxPass.Text).First();
+          
 
-            if(user != null)
+            if(ToskanaDBEntities.GetContext().User.Where(
+                u => u.Login == tBoxLogin.Text && u.Password == tBoxPass.Text).Count() > 0)
             {
+                User user = ToskanaDBEntities.GetContext().User.Where(
+                u => u.Login == tBoxLogin.Text && u.Password == tBoxPass.Text).First();
                 NavigationService.Navigate(new MainMenyPage(user));
             }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
     }
 }

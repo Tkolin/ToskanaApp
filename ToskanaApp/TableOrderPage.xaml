@@ -22,15 +22,15 @@
             <DatePicker x:Name="dPicEnd" SelectedDateChanged="dPicEnd_SelectedDateChanged"/>
 
         </StackPanel>
-        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False">
+        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата обеда" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название блюда" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Колорийность" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Кол-во" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата обеда" Binding="{Binding Date}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название блюда" Binding="{Binding Dish.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Колорийность" Binding="{Binding Dish.CalorieContent}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="3*"></DataGridTextColumn>
 
-                <DataGridTextColumn Header="Фамилия повора" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество повора" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия повора" Binding="{Binding Employe.LastName}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество повора" Binding="{Binding Employe.Patronymic}" Width="3*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Margin="10,5,10,0" HorizontalAlignment="Left" Orientation="Horizontal" >
@@ -38,6 +38,8 @@
             <Button x:Name="btnAdd" Content="Добавить" Margin="2" Click="btnAdd_Click"/>
             <Button x:Name="btnDel" Content="Удалить" Margin="2" Click="btnDel_Click"/>
             <Button x:Name="btnEdit" Content="Редактировать" Margin="2" Click="btnEdit_Click"/>
+            <Button x:Name="btnOtchet" Content="Сформировать отчёт" Margin="20,2,20,2" Click="btnOtchet_Click"/>
+
         </StackPanel>
     </StackPanel>
 </Page>
