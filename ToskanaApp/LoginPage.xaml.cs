@@ -27,7 +27,13 @@ namespace ToskanaApp
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
+            User user = ToskanaDBEntities.GetContext().User.Where(
+                u => u.Login == tBoxLogin.Text && u.Password == tBoxPass.Text).First();
 
+            if(user != null)
+            {
+                NavigationService.Navigate(new MainMenyPage(user));
+            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

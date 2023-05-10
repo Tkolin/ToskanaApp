@@ -20,34 +20,39 @@ namespace ToskanaApp
     /// </summary>
     public partial class MainMenyPage : Page
     {
+        User user;
         public MainMenyPage()
         {
             InitializeComponent();
         }
-
+        public MainMenyPage(User user)
+        {
+            InitializeComponent();
+            this.user = user;
+        }
         private void btnN1_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new TableOrderPage());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void btnN4_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new TableIngredientPage());
         }
 
         private void btnN3_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new TableDishPage());
         }
 
         private void btnN2_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new TableEmployePage());
         }
     }
 }

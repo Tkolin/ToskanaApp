@@ -20,7 +20,7 @@
             <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0">Изображение:</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                    <Image  Height="250" Width="294" Source="{Binding Image}" x:Name="N3"></Image>
+                    <Image  Height="250" Width="294"  Source="{Binding Image}" x:Name="N3"></Image>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
                     <Button Padding="5,0,5,0" Margin="5" x:Name="btnLoad" Click="btnLoad_Click" >Загрузить</Button>

@@ -58,42 +58,59 @@ namespace ToskanaApp
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EditOrderPage());
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedItem == null)
+                return;
+            Order order = dataGrid.SelectedItem as Order;
+            try
+            {
+                ToskanaDBEntities.GetContext().Order.Remove(order);
+                ToskanaDBEntities.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            Order order = dataGrid.SelectedItem as Order;
+            NavigationService.Navigate(new EditOrderPage(order));
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-
+            dPicEnd.SelectedDate = null;
+            dPicStart.SelectedDate = null;
+            tBox.Text = "";
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void dPicStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void dPicEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
     }
 }

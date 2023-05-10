@@ -42,37 +42,52 @@ namespace ToskanaApp
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            Ingredient ingredient = dataGrid.SelectedItem as Ingredient;
+            NavigationService.Navigate(new EditIngredientPage(ingredient));
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedItem == null)
+                return;
+            Ingredient ingredient = dataGrid.SelectedItem as Ingredient;
+            try
+            {
+                ToskanaDBEntities.GetContext().Ingredient.Remove(ingredient);
+                ToskanaDBEntities.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EditIngredientPage());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-
+            tBox.Text = "";
         }
     }
 }

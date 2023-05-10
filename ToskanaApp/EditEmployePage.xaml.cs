@@ -20,24 +20,66 @@ namespace ToskanaApp
     /// </summary>
     public partial class EditEmployePage : Page
     {
+        Employe employe;
+        bool edit;
         public EditEmployePage()
         {
             InitializeComponent();
+            edit = false;
+            this.employe = employe;
         }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        public EditEmployePage(Employe employe)
         {
-
-        }
-
-        private void backBtn_Click(object sender, RoutedEventArgs e)
-        {
-
+            InitializeComponent();
+            edit = true;
+            this.employe = employe;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            N6.ItemsSource = ToskanaDBEntities.GetContext().Position.ToList();
+            N6.DisplayMemberPath = "Name";
+            N7.ItemsSource = ToskanaDBEntities.GetContext().User.ToList();
+            N7.DisplayMemberPath = "Login";
 
+            if (edit)
+            {
+                N1.Text = employe.FirstName;
+                N2.Text = employe.LastName;
+                N3.Text = employe.Patronymic;
+                N4.Text = employe.Gender.Name;
+                N5.Text = employe.PhoneNumber;
+                N6.SelectedItem = employe.Position;
+                N7.SelectedItem = employe.User;
+            }
         }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            employe.FirstName = N1.Text;
+            employe.LastName = N2.Text;
+            employe.Patronymic = N3.Text;
+            employe.Gender.Name = N4.Text;
+            employe.PhoneNumber = N5.Text;
+            employe.Position = N6.SelectedItem as Position;
+            employe.User = N7.SelectedItem as User;
+
+            try
+            {
+                if(!edit)
+                    ToskanaDBEntities.GetContext().Employe.Add(employe);
+                ToskanaDBEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
     }
 }

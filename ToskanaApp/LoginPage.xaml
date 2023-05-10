@@ -9,6 +9,7 @@
       Title="LoginPage">
 
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="245">
+        <Label Content="Авторизация" FontSize="24" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>
 
         <TextBlock Margin="5,0,0,0">Логин:</TextBlock>
         <TextBox Margin="0,0,0,15" x:Name="tBoxLogin"></TextBox>

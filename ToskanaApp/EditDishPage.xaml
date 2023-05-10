@@ -13,19 +13,17 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
             <StackPanel Orientation="Vertical" Width="313" Margin="3">
                 <Label Content="Информация о блюде" FontSize="18" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>
-                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Категория:</TextBlock>
-                <ComboBox x:Name="B1" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Категория:</TextBlock>
-                <ComboBox x:Name="B2" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Название:</TextBlock>
+                <TextBox x:Name="B1" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Описание:</TextBlock>
+                <TextBox x:Name="B2" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
 
-                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Категория:</TextBlock>
-                <ComboBox x:Name="B3" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Категория:</TextBlock>
-                <ComboBox x:Name="B4" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                <DataGrid x:Name="dataGrid1" Height="130"  Margin="5,10,0,0" Width="466">
+                <TextBlock  HorizontalAlignment="Left" Margin="10,10,0,0">Калорийность:</TextBlock>
+                <TextBox x:Name="B3" Width="300" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <DataGrid x:Name="dataGrid1" Height="130"  Margin="5,10,0,0" Width="293">
 
                 </DataGrid>
-                <Button x:Name="btnDel" Width="100" Content="Удалить" Margin="5"></Button>
+                <Button x:Name="btnDel" Width="100" Content="Удалить" Margin="5" Click="btnDel_Click"></Button>
             </StackPanel>
             <StackPanel Orientation="Vertical"  Width="375" Margin="3">
                 <Label Content="Ингридиенты" FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Center"/>
@@ -34,11 +32,11 @@
                 </DataGrid>
                 <TextBlock HorizontalAlignment="Center" Width="200" Margin="10,10,10,0">Кол-во:</TextBlock>
                 <TextBox x:Name="tBoxCount" Margin="10,0,10,5"  Width="200"></TextBox> 
-                <Button x:Name="btnAdd" Content="Добавить" Width="100" Margin="10"/>
+                <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Width="100" Margin="10"/>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="2,20,2,2"/>
-        <Button x:Name="btnBack" Content="Назад" Width="100" Margin="2"/>
+        <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="2,20,2,2" Click="btnSave_Click"/>
+        <Button x:Name="btnBack" Content="Назад" Width="100" Margin="2" Click="btnBack_Click"/>
 
     </StackPanel>
 </Page>

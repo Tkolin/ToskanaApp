@@ -27,7 +27,7 @@ namespace ToskanaApp
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
         public void UpdateDataGrid()
         {
@@ -42,39 +42,53 @@ namespace ToskanaApp
                                               ).ToList();
             }
 
-
-
             dataGrid.ItemsSource = dishes;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EditDishPage());
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            Dish dish = dataGrid.SelectedItem as Dish;
+            try
+            {
+                ToskanaDBEntities.GetContext().Dish.Remove(dish);
+                ToskanaDBEntities.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            Dish dish = dataGrid.SelectedItem as Dish;
+            NavigationService.Navigate(new EditDishPage(dish));
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-
+            tBox.Text = "";
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
     }
 }
