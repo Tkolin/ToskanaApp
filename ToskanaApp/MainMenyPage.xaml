@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ToskanaApp"
       mc:Ignorable="d" 
        d:DesignHeight="700" d:DesignWidth="1000"
-      Title="MainMenyPage">
+      Title="MainMenyPage" Loaded="Page_Loaded">
 
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="800">
         <Label Content="Главное меню" FontSize="24" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>

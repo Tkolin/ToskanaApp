@@ -30,6 +30,14 @@ namespace ToskanaApp
             InitializeComponent();
             this.user = user;
         }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (user.RoleID == 2)
+            {
+                btnN2.Visibility = Visibility.Collapsed;
+                btnN4.Visibility = Visibility.Collapsed;
+            }
+        }
         private void btnN1_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new TableOrderPage());
@@ -54,5 +62,7 @@ namespace ToskanaApp
         {
             NavigationService.Navigate(new TableEmployePage());
         }
+
+
     }
 }
