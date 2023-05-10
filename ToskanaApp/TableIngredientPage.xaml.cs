@@ -24,7 +24,22 @@ namespace ToskanaApp
         {
             InitializeComponent();
         }
+        public void UpdateDataGrid()
+        {
+            List<Ingredient> ingredients = ToskanaDBEntities.GetContext().Ingredient.ToList();
 
+            if (tBox.Text.Length > 0)
+            {
+                string src = tBox.Text.ToLower();
+                ingredients = ingredients.Where(e => e.Name.ToLower().Contains(src) ||
+                                              e.Unit.Name.ToLower().Contains(src)
+                                              ).ToList();
+            }
+
+
+
+            dataGrid.ItemsSource = ingredients;
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 

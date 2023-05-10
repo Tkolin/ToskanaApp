@@ -12,11 +12,26 @@
         <Label Content="Расписание обедов" FontSize="24" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>
         <StackPanel  Margin="10" HorizontalAlignment="Center" Orientation="Horizontal" >
             <TextBlock VerticalAlignment="Center">Поиск:</TextBlock>
-            <TextBox Width="300" TextChanged="TextBox_TextChanged"/>
+            <TextBox Width="300" x:Name="tBox" TextChanged="TextBox_TextChanged"/>
             <Button x:Name="btnReset" Content="Сбросить" Margin="20,0,0,0" Click="btnReset_Click"/>
         </StackPanel>
-        <DataGrid Height="300" x:Name="dataGrid">
-            
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <TextBlock VerticalAlignment="Center" Margin="0,0,5,0">От:</TextBlock>
+            <DatePicker x:Name="dPicStart" SelectedDateChanged="dPicStart_SelectedDateChanged"/>
+            <TextBlock VerticalAlignment="Center" Margin="10,0,5,0"> до:</TextBlock>
+            <DatePicker x:Name="dPicEnd" SelectedDateChanged="dPicEnd_SelectedDateChanged"/>
+
+        </StackPanel>
+        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата обеда" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название блюда" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Колорийность" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Фамилия повора" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество повора" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Margin="10,5,10,0" HorizontalAlignment="Left" Orientation="Horizontal" >
             <Button x:Name="btnBack" Content="Назад" Margin="10,2,20,2" Click="btnBack_Click" />

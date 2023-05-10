@@ -12,11 +12,22 @@
         <Label Content="Ингридиенты" FontSize="24" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>
         <StackPanel  Margin="10" HorizontalAlignment="Center" Orientation="Horizontal" >
             <TextBlock VerticalAlignment="Center">Поиск:</TextBlock>
-            <TextBox Width="300" TextChanged="TextBox_TextChanged"/>
+            <TextBox Width="300" x:Name="tBox" TextChanged="TextBox_TextChanged"/>
             <Button x:Name="btnReset" Content="Сбросить" Margin="20,0,0,0" Click="btnReset_Click"/>
         </StackPanel>
-        <DataGrid Height="300" x:Name="dataGrid">
-
+        <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+            <DataGridTextColumn Header="Наименование" Binding="{Binding Items.Name}" Width="3*"></DataGridTextColumn>
+            <DataGridTextColumn Header="Еденицы имерения" Binding="{Binding DateOfReceipt}" Width="3*"></DataGridTextColumn>
+            <DataGridTemplateColumn Header="Изображение"  Width="3*"
+                                                        IsReadOnly="True">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Items.Image}" Width="100" Height="100"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+          </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Margin="10,5,10,0" HorizontalAlignment="Left" Orientation="Horizontal" >
             <Button x:Name="btnBack" Content="Назад" Margin="10,2,20,2" Click="btnBack_Click" />

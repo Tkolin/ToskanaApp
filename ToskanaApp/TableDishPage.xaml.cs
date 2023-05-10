@@ -29,6 +29,23 @@ namespace ToskanaApp
         {
 
         }
+        public void UpdateDataGrid()
+        {
+            List<Dish> dishes = ToskanaDBEntities.GetContext().Dish.ToList();
+
+            if (tBox.Text.Length > 0)
+            {
+                string src = tBox.Text.ToLower();
+                dishes = dishes.Where(e => e.Name.ToLower().Contains(src) ||
+                                              e.Description.ToLower().Contains(src) ||
+                                              e.CalorieContent.ToString().ToLower().Contains(src)
+                                              ).ToList();
+            }
+
+
+
+            dataGrid.ItemsSource = dishes;
+        }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {

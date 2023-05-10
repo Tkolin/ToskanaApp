@@ -25,6 +25,27 @@ namespace ToskanaApp
             InitializeComponent();
         }
 
+        public void UpdateDataGrid()
+        {
+            List<Employe> employes = ToskanaDBEntities.GetContext().Employe.ToList();
+
+            if(tBox.Text.Length > 0)
+            {
+                string src = tBox.Text.ToLower();
+                employes = employes.Where(e=> e.FirstName.ToLower().Contains(src) ||
+                                              e.LastName.ToLower().Contains(src) ||
+                                              e.Patronymic.ToLower().Contains(src) ||
+                                              e.PhoneNumber.ToLower().Contains(src) ||
+                                              e.User.Login.ToLower().Contains(src) ||
+                                              e.Position.Name.ToLower().Contains(src)
+                                              ).ToList(); 
+            }
+
+
+
+            dataGrid.ItemsSource = employes;
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
