@@ -1,0 +1,19 @@
+﻿<Page x:Class="ToskanaApp.MainMenyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ToskanaApp"
+      mc:Ignorable="d" 
+       d:DesignHeight="700" d:DesignWidth="1000"
+      Title="MainMenyPage">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="800">
+        <Label Content="Главное меню" FontSize="24" FontWeight="DemiBold" Margin="5" HorizontalAlignment="Center"/>
+        <Button Width="200" Content="Меню" x:Name="btnN1" Click="btnN1_Click" Margin="2,100,2,2"/>
+        <Button Width="200" Content="Сотрудники" x:Name="btnN2" Click="btnN2_Click" Margin="2"/>
+        <Button Width="200" Content="Блюда" x:Name="btnN3" Click="btnN3_Click" Margin="2"/>
+        <Button Width="200" Content="Ингридиенты" x:Name="btnN4" Click="btnN4_Click" Margin="2"/>
+        <Button Width="100" Content="Назад" x:Name="btnBack" Click="btnBack_Click" Margin="2,10,2,2"/>
+    </StackPanel>
+</Page>
